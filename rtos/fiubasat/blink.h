@@ -2,7 +2,7 @@
 #define BLINK_H
 
 #include "task.h"
-#include "uart1.h"
+#include "uart.h"
 
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>

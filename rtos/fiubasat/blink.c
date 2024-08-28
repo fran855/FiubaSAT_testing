@@ -5,7 +5,7 @@ void taskBlink(void *args __attribute__((unused))) {
     //char *taskName = "taskBlink is running\r\n";
     for (;;) {
         gpio_toggle(GPIOC, GPIO13);
-		vTaskDelay(pdMS_TO_TICKS(500));
+		vTaskDelay(pdMS_TO_TICKS(250));
 	}
 }
 
