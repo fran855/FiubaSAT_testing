@@ -3,7 +3,7 @@
 ######################################################################
 
 BINARY		= main
-SRCFILES	= main.c blink.c log_task.c mutex.c semaphore.c test.c uart1.c uart2.c uart3.c rtos/heap_4.c rtos/list.c rtos/port.c rtos/tasks.c rtos/opencm3.c rtos/queue.c
+SRCFILES	= main.c blink.c uart.c test.c rtos/heap_4.c rtos/list.c rtos/port.c rtos/tasks.c rtos/opencm3.c rtos/queue.c
 LDSCRIPT	= stm32f103c8t6.ld
 
 include ../../Makefile.incl
