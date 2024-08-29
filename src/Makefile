@@ -25,15 +25,15 @@ SOURCES = \
 
 CFLAGS = -std=c99 -Wall -Wextra -Wshadow -Wimplicit-function-declaration -Wredundant-decls \
 	-Wmissing-prototypes -Wstrict-prototypes -fno-common -ffunction-sections -fdata-sections \
-	-Os -g -mthumb -mcpu=cortex-m3 -msoft-float -mfix-cortex-m3-ldrd -DSTM32F1 $(INCLUDES)
+	-Os -g -mthumb -mcpu=cortex-m3 -msoft-float -mfix-cortex-m3-ldrd -DSTM32F1 -flto $(INCLUDES)
 
-LDFLAGS = -T./stm32f103c8t6.ld -nostartfiles -Wl,--gc-sections
+LDFLAGS = -T./stm32f103c8t6.ld -nostartfiles -Wl,--gc-sections -specs=nano.specs -specs=nosys.specs -Wl,--undefined=vTaskSwitchContext
 
 LDLIBS = -L../lib/libopencm3/lib -lopencm3_stm32f1
 
 OBJS = $(SOURCES:.c=.o)
 
-all: $(PROJECT_NAME).elf
+all: $(PROJECT_NAME).elf clean
 
 $(PROJECT_NAME).elf: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
@@ -44,6 +44,12 @@ $(PROJECT_NAME).elf: $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
+	rm -f $(OBJS) $(PROJECT_NAME).elf
+
+delete:
 	rm -f $(OBJS) $(PROJECT_NAME).elf $(PROJECT_NAME).bin
 
-.PHONY: all clean
+flash:
+	openocd -f /usr/share/openocd/scripts/interface/stlink.cfg -f /usr/share/openocd/scripts/target/stm32f1x.cfg -c "program $(PROJECT_NAME).bin 0x08000000" -c "shutdown"
+
+.PHONY: all clean delete flash
