@@ -6,5 +6,6 @@
 
 void taskTest(void *args __attribute__((unused)));
 void taskPrintBuffer(void *args __attribute__((unused)));
+void taskTestUART_Semaphore(void *args __attribute__((unused)));
 
 #endif
