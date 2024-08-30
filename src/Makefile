@@ -20,8 +20,9 @@ SOURCES = \
 	../lib/rtos/list.c \
 	../lib/rtos/port.c \
 	../lib/rtos/tasks.c \
-	../lib/rtos/opencm3.c \
-	../lib/rtos/queue.c
+	../lib/rtos/queue.c \
+	../lib/rtos/timers.c
+#	../lib/rtos/opencm3.c
 
 CFLAGS = -std=c99 -Wall -Wextra -Wshadow -Wimplicit-function-declaration -Wredundant-decls \
 	-Wmissing-prototypes -Wstrict-prototypes -fno-common -ffunction-sections -fdata-sections \
